@@ -24,6 +24,7 @@ local hsl = lush.hsl
 local bf, it, un = 'bold', 'italic', 'underline'
 
 -- Base colors
+local black = hsl(0, 0, 0)
 local c0 = hsl(240, 1, 15)
 local c1 = c0.lighten(5)
 local c2 = c1.lighten(2)
@@ -34,9 +35,9 @@ local c6 = c5.lighten(70)
 local c7 = c6.lighten(80)
 
 -- Set base colors
-local bg      = c0    -- base background
-local overbg  = c1    -- other backgrounds
-local subtle  = c2    -- out-of-buffer elements
+local bg      = black    -- base background
+local overbg  = black    -- other backgrounds
+local subtle  = black    -- out-of-buffer elements
 
 local fg      = hsl(210, 7, 82)
 local comment = hsl(0, 0, 54)    -- comments
