@@ -35,9 +35,9 @@ local c6         = c5.lighten(70)
 local c7         = c6.lighten(80)
 
 -- Set base colors
-local bg         = customBg -- base background
-local overbg     = customBg -- other backgrounds
-local subtle     = customBg -- out-of-buffer elements
+local bg         = customBg       -- base background
+local overbg     = customBg       -- other backgrounds
+local subtle     = customBg.da(5) -- out-of-buffer elements
 
 local fg         = hsl(210, 7, 82)
 local comment    = hsl(0, 0, 54) -- comments
