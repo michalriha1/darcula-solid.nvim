@@ -38,7 +38,7 @@ local bg = c0 -- base background
 local overbg = c1 -- other backgrounds
 local subtle = c0 -- out-of-buffer elements
 
-local fg = hsl(210, 7, 82)
+local fg = hsl(210, 19, 72)
 local comment = hsl(0, 0, 54) -- comments
 local folder = hsl(202, 9, 57)
 local treebg = hsl(220, 3, 19)
