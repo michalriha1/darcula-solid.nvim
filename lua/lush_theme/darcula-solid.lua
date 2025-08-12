@@ -288,5 +288,8 @@ return lush(function(injected_functions)
 		NvimTreeIndentMarker({ fg = hsl(204, 3, 32) }),
 		NvimTreeRootFolder({ fg = folder }),
 		NvimTreeFolderIcon({ fg = folder }),
+
+		TodoBgTODO({ bg = bg }),
+		TodoFgTODO({ bg = bg }),
 	}
 end)
