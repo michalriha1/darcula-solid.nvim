@@ -25,8 +25,8 @@ local bf, it, un = "bold", "italic", "underline"
 
 -- Base colors
 local c0 = hsl(240, 1, 17)
-local c1 = c0.lighten(5)
-local c2 = c1.lighten(2)
+local c1 = c0
+local c2 = c1.lighten(7)
 local c3 = c2.lighten(20).sa(10)
 local c4 = c3.lighten(10)
 local c5 = c4.lighten(20)
@@ -49,15 +49,18 @@ local pop = c7
 -- Color palette
 local red = hsl(1, 77, 59)
 local salmon = hsl(10, 90, 70)
-local orange = hsl(27, 61, 50)
+local orange = hsl(27, 60, 49)
 local yellow = hsl(37, 100, 71)
 
-local green = hsl(83, 27, 53)
+local lightGreen = hsl(83, 68, 72)
+local green = hsl(98, 20, 44)
 local teal = hsl(150, 40, 50)
-local cyan = hsl(180, 58, 38)
+local cyan = hsl(199, 100, 69)
+local forest = hsl(120, 11, 23)
+local turquoise = hsl(174, 42, 65)
 
 local blue = hsl(215, 80, 63).li(10)
-local purple = hsl(279, 30, 62)
+local purple = hsl(279, 23, 56)
 local magenta = hsl(310, 40, 70)
 
 return lush(function(injected_functions)
@@ -70,8 +73,12 @@ return lush(function(injected_functions)
 		Comment({ fg = comment, gui = it }),
 		Whitespace({ fg = mid }), -- 'listchars'
 		Conceal({ fg = hsl(0, 0, 25) }),
-		NonText({ fg = red }), -- characters that don't exist in the text
+		NonText({ fg = treebg.li(30) }), -- characters that don't exist in the text
 		SpecialKey({ Whitespace }), -- Unprintable characters: text displayed differently from what it really is
+
+		SnacksPickerGitStatusUntracked({ fg = salmon }),
+		SnacksPickerGitStatusModified({ fg = yellow.li(50) }),
+		SnacksPickerGitStatusStaged({ fg = lightGreen }),
 
 		Cursor({ fg = bg, bg = fg }),
 		TermCursor({ fg = bg, bg = fg }),
@@ -116,7 +123,7 @@ return lush(function(injected_functions)
 		ErrorMsg({ fg = red }), -- error messages on the command line
 		WarningMsg({ fg = red }), -- warning messages
 
-		Directory({ fg = blue }), -- directory names (and other special names in listings)
+		Directory({ fg = fg }), -- directory names (and other special names in listings)
 		Title({ fg = blue }), -- titles for output from ":set all" ":autocmd" etc.
 
 		DiffAdd({ fg = green.da(20) }),
@@ -133,8 +140,8 @@ return lush(function(injected_functions)
 
 		---- Language Server Protocol highlight groups ---------------------------------
 
-		LspReferenceText({ bg = mid }), -- highlighting "text" references
-		LspReferenceRead({ bg = mid }), -- highlighting "read" references
+		LspReferenceText({ bg = forest }), -- highlighting "text" references
+		LspReferenceRead({ bg = forest }), -- highlighting "read" references
 		LspReferenceWrite({ bg = mid }), -- highlighting "write" references
 
 		-- base highlight groups. Other LspDiagnostic highlights link to these by default (except Underline)
@@ -163,7 +170,7 @@ return lush(function(injected_functions)
 		---- Standard highlight groups -------------------------------------------------
 		-- See :help group-name
 
-		Constant({ fg = orange }),
+		Constant({ fg = purple }),
 		Number({ fg = blue }),
 		Float({ Number }),
 		Boolean({ Constant }),
@@ -189,7 +196,7 @@ return lush(function(injected_functions)
 
 		Type({ fg = fg }),
 		StorageClass({ fg = magenta }), -- static, register, volatile, etc.
-		Structure({ fg = magenta }), -- struct, union, enum, etc.
+		Structure({ fg = fg }), -- struct, union, enum, etc. UPDATED from magenta
 		Typedef({ Type }),
 
 		Special({ fg = orange }), -- (preferred) any special symbol
@@ -225,6 +232,7 @@ return lush(function(injected_functions)
 		sym("@parameter")({ fg = fg }),
 		sym("@parameter.reference")({ fg = fg }),
 		sym("@variable")({ fg = fg }), -- Any variable name that does not have another highlight
+		sym("@variable.member")({ fg = purple }),
 		sym("@variable.builtin")({ Constant, gui = it }), -- Variable names that are defined by the languages like `this` or `self`.
 
 		sym("@function")({ Function }),
@@ -266,6 +274,10 @@ return lush(function(injected_functions)
 		sym("@text.uri")({ fg = green, gui = it }), -- Any URI like a link or email
 
 		sym("@error")({ fg = red }), -- syntax/parser errors.
+
+		sym("@lsp.type.jsonObject")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
+		sym("@lsp.type.regexGrouping")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
+		sym("@lsp.type.regexCharacterClass")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
 
 		-- Other stuff
 		HelpHyperTextJump({ fg = yellow }),
