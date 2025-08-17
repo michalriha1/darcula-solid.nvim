@@ -187,6 +187,7 @@ return lush(function(injected_functions)
 		Operator({ fg = fg }),
 		Keyword({ Statement }), -- any other keyword
 		Exception({ fg = red }),
+		csException({ fg = orange }),
 
 		PreProc({ fg = orange }), --  generic Preprocessor
 		Include({ PreProc }), -- preprocessor #include
