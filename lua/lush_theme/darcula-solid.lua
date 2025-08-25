@@ -279,6 +279,7 @@ return lush(function(injected_functions)
 		sym("@lsp.type.jsonObject")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
 		sym("@lsp.type.regexGrouping")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
 		sym("@lsp.type.regexCharacterClass")({ fg = cyan }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
+		sym("@lsp.type.extensionMethod")({ fg = orange }), -- includes: `#include` in C `use` or `extern crate` in Rust or `require` in Lua.
 
 		-- Other stuff
 		HelpHyperTextJump({ fg = yellow }),
